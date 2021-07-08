@@ -1,5 +1,5 @@
-Solutions to Damn Vulnerable Defi. NOTE: Use `node v12.20.1` and associated `npm` installed with `nvm`.
-
+Solutions to Damn Vulnerable Defi. NOTE: Use `node v12.20.1` and associated `npm` installed with `nvm`. Doesn't seem to work with Apple silicon?
+ 
 # Original 
 ![](cover.png)
 
