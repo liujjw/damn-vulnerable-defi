@@ -1,3 +1,6 @@
+Solutions to Damn Vulnerable Defi. NOTE: Use `node v12.20.1` and associated `npm` installed with `nvm`.
+
+# Original 
 ![](cover.png)
 
 **A set of challenges to hack implementations of DeFi in Ethereum.** Featuring flash loans, oracles, governance, NFTs, lending pools, and more!
