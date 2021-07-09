@@ -1,4 +1,4 @@
-Solutions to Damn Vulnerable Defi. NOTE: Use `node v12.20.1` and associated `npm` installed with `nvm`.
+Solutions to Damn Vulnerable Defi. NOTE: Use `node v12.20.1` and associated `npm` installed with `nvm`. TODO clone and use original `package-lock.json` and `package.json`.
 
 # Original 
 ![](cover.png)

